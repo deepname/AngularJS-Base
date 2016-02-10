@@ -1,0 +1,42 @@
+<div id="user-edit-view">
+    <div class="col-xs-12">
+        <div class="row" style="margin-top: 15px;">
+            <h1>
+                User {{userType}} configuration
+                <span class="btn btn-default pull-right" ng-click="rememberUserPass(user.username)"
+                      ng-show="showRememberBtn && authData.roles.indexOf('ROLE_ADMIN')!=-1;">
+                      Reset password
+                </span>
+            </h1>
+            <p class="remember-message success" ng-show="successRemember == true">{{rememberMsg}}</p>
+            <p class="remember-message error" ng-show="successRemember == false">{{rememberMsg}}</p>
+            <form class="form-horizontal" role="form" name="newUserForm" ng-submit="submit()">
+                <!-- floating actions bar -->
+                <div class="alert alert-info floating-nav" ng-if="authData.roles.indexOf('ROLE_ADMIN')!=-1;" ng-class="{small: !sideBarBig}">
+                    <strong ng-if="!newUser">Mod User </strong>
+                    <strong ng-if="newUser">New User </strong>
+                    <div class="main-actions" ng-include='"app/secured/sections/user/views/partials/buttons.html"'></div>
+                </div>
+                <!-- selection of the type of content to be created -->
+                <!-- user info section -->
+                <div ng-include='"app/secured/sections/user/views/partials/userInfo.html"'></div>
+                <div ng-if="userType === 'WEGO_APP'" ng-include='"app/secured/sections/user/views/partials/userInfoApp.html"'></div>
+                <!-- user tracking -->
+                <tabset ng-if="userType === 'WEGO_APP'">
+                    <tab heading="Tracking">
+                        <div ng-include='"app/secured/sections/user/views/partials/userTracking.html"'></div>
+                    </tab>
+                    <tab heading="Features" ng-if="!newUser">
+                        <div ng-include='"app/secured/sections/user/views/partials/userFeatures.html"'></div>
+                    </tab>
+                    <tab heading="Rates">
+                        <div ng-include='"app/secured/sections/user/views/partials/userRates.html"'></div>
+                    </tab>
+                    <tab heading="List of activity">
+                        <div ng-include='"app/secured/sections/user/views/partials/userActivityList.html"'></div>
+                    </tab>
+                </tabset>
+            </form>
+        </div>
+    </div>
+</div>

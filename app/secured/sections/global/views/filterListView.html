@@ -1,0 +1,35 @@
+<div ng-hide="show_form" class="align-right">
+    <button style="outline: none" ng-click="toggleForm()" class="btn btn-white btn-info btn-bold">
+        <i class="ace-icon glyphicon glyphicon-search bigger-110"></i> Búsqueda avanzada
+    </button>
+</div>
+<div ng-show="show_form" class="align-right">
+    <form action="{{form_params.action}}" method="{{form_params.method}}" ng-model="formFilter">
+        <div class="row">
+            <div ng-repeat="param in content_params" class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <span>{{param.label}}</span>
+                    </div>
+                    <div class="col-sm-9">
+                        <span ng-if="(param.element | lowercase) == 'textarea'" ng-include='"app/secured/sections/global/views/filters/normal_textarea.html"'></span>
+                        <span ng-if="(param.element | lowercase) == 'input'" ng-include='"app/secured/sections/global/views/filters/normal_input.html"'></span>
+                        <span ng-if="(param.element | lowercase) == 'select'" ng-include='"app/secured/sections/global/views/filters/normal_select.html"'></span>
+                        <span ng-if="(param.element | lowercase) == 'multiple'" ng-include='"app/secured/sections/global/views/filters/normal_multiple.html"'></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div style="outline: none" ng-click="toggleForm()" class="btn btn-white btn-danger btn-bold">
+                <i class="ace-icon glyphicon glyphicon-remove bigger-110"></i> Ocultar
+            </div>
+            <div style="outline: none" ng-click="generateJSON()" type="submit" class="btn btn-white btn-success btn-bold">
+                <i class="ace-icon glyphicon glyphicon-search bigger-110"></i> Buscar
+            </div>
+            <div style="outline: none" ng-click="cleanJSON()" class="btn btn-white btn-bold" type="reset">
+                <i class="ace-icon fa fa-undo bigger-110"></i> Reset
+            </div>
+        </div>
+    </form>
+</div>

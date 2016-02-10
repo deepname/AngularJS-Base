@@ -1,0 +1,32 @@
+<div class="modal-wrap">
+    <div class="modal-bg animated fadeIn short" ng-show="$root.messageModalShown1"></div>
+    <div class="modal-box animated short" ng-class="{true: 'zoomIn', false: 'zoomOut'}[$root.messageModalShown2]">
+        <div class="modal-header">
+            <h2>
+                {{modalTitle}}
+            </h2>
+        </div>
+        <div class="modal-body">
+            <p>{{modalMessage}}</p>
+        </div>
+        <!-- no actions, so one button by default -->
+        <div ng-if="!modalActions || modalActions.length <= 1" class="modal-footer">
+            {{action.callback}}
+            <button ng-repeat="action in modalActions" ng-click="action.callback != null ? action.callback() : $root.closeMessageModal()">
+                {{action.text}}
+            </button>
+        </div>
+        <!-- sent two actions (secondary, primary) -->
+        <div ng-if="modalActions.length == 2" class="modal-footer">
+            <button ng-repeat="action in modalActions" ng-click="action.callback != null ? action.callback() : $root.closeMessageModal()">
+                {{action.text}}
+            </button>
+        </div>
+        <!-- sent two actions (secondary, secondary, primary) -->
+        <div ng-if="modalActions.length == 3" class="modal-footer">
+            <button ng-repeat="action in modalActions" ng-click="action.callback != null ? action.callback() : $root.closeMessageModal()">
+                {{action.text}}
+            </button>
+        </div>
+    </div>
+</div>

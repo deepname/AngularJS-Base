@@ -1,0 +1,33 @@
+<!-- We add ng-form to the tag ng-repeat is on, to create a nested form context. -->
+<div>
+    <div style="padding:15px">
+        <!-- title -->
+        <div class="form-group" ng-class="{'has-error': subForm.title.$dirty && subForm.title.$invalid}">
+            <label class=" control-label no-padding-right" for="form-field-1-3"> Title: </label>
+            <input id="form-field-1-1" ng-model="content.title" class="form-control" name="title" />
+        </div>
+        <!-- short description -->
+        <div class="form-group" ng-class="{'has-error': subForm.shortDescription.$dirty && subForm.shortDescription.$invalid}">
+            <label class="control-label no-padding-right" for="form-field-1-1"> Short description: </label>
+            <input ng-if="directiveLang" id="form-field-1-1" ng-model="content.shortDescription" class="form-control" name="shortDescription{{directiveLang}}" ng-disabled="directiveDisabled" />
+        </div>
+        <!-- description -->
+        <div class="form-group" ng-class="{'has-error': subForm.description.$dirty && subForm.description.$invalid}">
+            <label class="control-label no-padding-right" for="form-field-1-2"> Description: </label>
+            <div ng-if="!directiveDisabled" id="form-field-1-2" text-angular ng-model="content.description" name="descriptionContent{{directiveLang}}"></div>
+            <p class="textareaDisabled" ng-if="directiveDisabled" ng-bind-html="content.description"></p>
+        </div>
+        <!-- how to arrive -->
+        <div class="form-group" ng-class="{'has-error': subForm.howToArrive.$dirty && subForm.howToArrive.$invalid}">
+            <label class=" control-label no-padding-right" for="form-field-1-3"> How to arrive: </label>
+            <div ng-if="!directiveDisabled" id="form-field-1-3" text-angular ng-model="content.howToArrive" name="howToArrive{{directiveLang}}"></div>
+            <p class="textareaDisabled" ng-if="directiveDisabled" ng-bind-html="content.howToArrive"></p>
+        </div>
+        <!-- timetable -->
+        <div class="form-group" ng-class="{'has-error': subForm.timetable.$dirty && subForm.timetable.$invalid}">
+            <label class="control-label no-padding-right" for="form-field-1-3"> Timetable: </label>
+            <div ng-if="!directiveDisabled" id="form-field-1-3" text-angular ng-model="content.timetable"></div>
+            <p class="textareaDisabled" ng-if="directiveDisabled" ng-bind-html="content.timetable"></p>
+        </div>
+    </div>
+</div>

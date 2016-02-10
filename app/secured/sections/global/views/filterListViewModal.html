@@ -1,0 +1,32 @@
+<!-- filters -->
+<div class="align-left">
+    <form action="{{form_params.action}}" method="{{form_params.method}}" ng-model="formFilter">
+        <div class="row">
+            <div ng-repeat="param in content_params" class="col-sm-6">
+                <div class="col-sm-12">
+                    <span>{{param.label}}</span>
+                </div>
+                <div class="col-sm-12">
+                    <span ng-if="(param.element | lowercase) == 'textarea'" ng-include='"app/secured/sections/global/views/filters/normal_textarea.html"'></span>
+                    <span ng-if="(param.element | lowercase) == 'input'" ng-include='"app/secured/sections/global/views/filters/normal_input.html"'></span>
+                    <span ng-if="(param.element | lowercase) == 'select'" ng-include='"app/secured/sections/global/views/filters/normal_select.html"'></span>
+                </div>
+                <hr>
+            </div>
+            <div class="filter-actions">
+                <div style="outline: none" ng-click="toggleForm()" class="btn btn-white btn-danger btn-bold">
+                    <i class="ace-icon glyphicon glyphicon-remove bigger-110"></i>
+                    Ocultar
+                </div>
+                <div style="outline: none" ng-click="generateJSON()" class="btn btn-white btn-success btn-bold">
+                    <i class="ace-icon glyphicon glyphicon-search bigger-110"></i>
+                    Buscar
+                </div>
+                <div style="outline: none" ng-click="cleanJSON()" class="btn btn-white btn-bold" type="reset">
+                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                    Reset
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

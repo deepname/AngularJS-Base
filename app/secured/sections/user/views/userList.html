@@ -1,0 +1,95 @@
+<div class="page-header">
+    <h1>
+		User {{userType}} List
+	</h1>
+</div>
+<!-- /.page-header -->
+<div class="row">
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <div class="row">
+            <div class="col-md-3">
+                <a ng-click="createElement(url)" ng-if="userType != 'App'">
+                    <button class="btn btn-white btn-info btn-bold">
+                        <i class="ace-icon glyphicon glyphicon-plus bigger-110"></i> New
+                    </button>
+                </a>
+            </div>
+            <div class="col-md-9">
+                <filter-list template="filterListView" action="link_action" method="post" imodel='[
+                 {"name":"f_email","label":"Mail to search","placeholder":"write some mail...","element":"input","type":"text"},
+                 {"name":"f_username","label":"Username to search","placeholder":"write some username...","element":"input","type":"text"},
+                 {"name":"f_actived","label":"Active","element":"select","options":[{"title":"Actived","value":"true"},{"title":"UnActived","value":"false"}]},
+                 {"name":"f_enabled","label":"Enable","element":"select","options":[{"title":"Enabled","value":"true"},{"title":"Disabled","value":"false"}]}
+                 ]' ng-bind-html-unsafe="form_filter"></filter-list>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-white btn-success btn-round" ng-click="exportCSV()">
+                    <i class="ace-icon fa fa-file-excel-o bigger-110"></i> Export CSV
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div id="user-list_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                <table id="user-list" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Name&Surname</th>
+                            <th width="65px"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in page.list">
+                            <td class="clickable" ng-click="editElement(user.username, url)">
+                                {{user.username}}
+                            </td>
+                            <td class="clickable" ng-click="editElement(user.username, url)">
+                                {{user.name}}&nbsp;{{user.surname}}
+                            </td>
+                            <td>
+                                <div class="hidden-sm hidden-xs action-buttons">
+                                    <a class="green" ng-href="" ng-click="editElement(user.username, url)">
+                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                    </a>
+                                    <a class="red" href="" ng-click="delete(user.username, 'Are you sure?')">
+                                        <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                    </a>
+                                </div>
+                                <div class="hidden-md hidden-lg">
+                                    <div class="inline position-relative">
+                                        <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                            <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                            <li>
+                                                <a ng-href="" ng-click="editElement(user.username, url)" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                    <span class="green">
+			                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+			                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="" ng-click="delete(user.username, 'Are you sure?')" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                    <span class="red">
+			                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+			                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination-our></pagination-our>
+            </div>
+        </div>
+        <!-- PAGE CONTENT ENDS -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->

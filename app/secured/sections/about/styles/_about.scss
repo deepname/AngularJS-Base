@@ -1,0 +1,15 @@
+#about-view{
+  height: 100%;
+  >div{
+    height: 100%;
+  }
+
+  img{
+    @include transform(translate(-50%, -75%));
+    display: inline-block;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+  }
+}

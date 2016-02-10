@@ -1,0 +1,115 @@
+<!-- images list -->
+<div class="form-group col-sm-12">
+    <div ng-if="uploader" class="drop-zone" nv-file-drop="" uploader="uploader" type="file">Drop images here</div>
+    <!--label class="ace-file-input">
+        <input ng-if="uploader" nv-file-drop="" uploader="uploader" type="file" multiple />
+        <span class="ace-file-container" data-title="Choose">
+            <span class="ace-file-name" data-title="No File ...">
+                <i class=" ace-icon fa fa-upload"></i>
+            </span>
+        </span>
+        <a href="#" class="remove">
+            <i class="ace-icon fa fa-times"></i>
+        </a>
+    </label-->
+    <!-- uploader -->
+    <div ng-show="uploader.queue.length > 0">
+        <div class="table-header">
+            <span>Upload queue</span>
+            <span class="pull-right">
+                Queue length: {{ uploader.queue.length }}&nbsp;
+            </span>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="50%">Name</th>
+                    <th ng-show="uploader.isHTML5">Size</th>
+                    <th ng-show="uploader.isHTML5">Progress</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in uploader.queue">
+                    <td>
+                        <strong>{{ item.file.name }}</strong>
+                    </td>
+                    <td ng-show="uploader.isHTML5" nowrap>
+                        {{ item.file.size/1024/1024|number:2 }} MB
+                    </td>
+                    <td ng-show="uploader.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                        <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <div>
+                Queue progress:
+                <div class="progress" style="">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                <span class="glyphicon glyphicon-upload"></span> Upload all
+            </button>
+            <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+            </button>
+            <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                <span class="glyphicon glyphicon-trash"></span> Remove all
+            </button>
+        </div>
+    </div>
+    <!-- end uploader -->
+</div>
+<div class="form-group col-sm-12" ng-if="management.content.imagesURLs!=null" id="content-images">
+    <label class="control-label no-padding-right" for="form-field-1">
+        <h4 class="smaller lighter">Uploaded images</h4>
+    </label>
+    <div class="form-group col-sm-12">
+        <!--span class="label label-info">{{value}}</span-->
+        <div class="img-wrap" ng-repeat="value in management.content.imagesURLs track by $index">
+            <img ng-src="{{urlStaticImage}}{{value}}" height="160" title="{{value}}" ng-click="selectMainImageURL(value)" />
+            <div class="featured" ng-if="value == management.content.mainImageURL">FEATURED</div>
+            <div class="delete" ng-click="addToDelete(value)"><i class="fa fa-times red fa-2x"></i></div>
+        </div>
+        <p ng-if="!management.content.imagesURLs || !management.content.imagesURLs.length">This content hasn't got any associated images yet.</p>
+    </div>
+    <div class="col-sm-12">
+        <div class="row">
+            <label class="control-label no-padding-right">
+                <h4 class="smaller lighter">Images to delete</h4>
+            </label>
+            <p ng-if="!management.content.imagesToDelete.length">No images to delete yet.</p>
+            <div class="images-to-delete" ng-if="management.content.imagesToDelete.length">
+                <!--li ng-repeat="toDelete in management.content.imagesToDelete track by $index">
+                    {{toDelete}} <i class="fa fa-times" ng-click="undoToDelete(toDelete)"></i>
+                </li-->
+                <div class="to-delete-wrap" ng-repeat="toDelete in management.content.imagesToDelete track by $index">
+                    <img ng-src="{{urlStaticImage}}{{toDelete}}" height="50">
+                    <div class="delete" ng-click="undoToDelete(toDelete)"><i class="fa fa-undo"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="form-group" ng-if="!newUser">
+    <!--    <label class="control-label no-padding-right" for="form-field-1">
+        Features:
+    </label>-->
+    <div class="col-sm-12">
+        <div class="widget-box">
+            <div class="widget-body">
+                <div class="widget-main boxFeatures">
+                    <div class="control-group tabFeatures">
+                        <tabset justified="true">
+                            <tab heading="Like">
+                                <input type="text" ng-model="filter_feature[feature.name.es]" class="col-md-12" placeholder="Filter likes {{key}} by" />
+                                <div class="col-sm-3" ng-repeat="feature in featuresProfile |filter:{dislikesAlias: '!true'} | filter:filter_feature[feature.name.es]">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="{{feature.id}}" type="checkbox" class="like ace ace-checkbox-2" ng-click="feature.active = !feature.active; onChecked(feature, 'likesAlias')" ng-checked="feature.active" />
+                                            <span class="lbl"> {{feature.name.es}}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="Dislike">
+                                <input type="text" ng-model="filter_feature[feature.name.es]" class="col-md-12" placeholder="Filter dislike {{key}} by" />
+                                <div class="col-sm-3" ng-repeat="feature in featuresProfile |filter:{likesAlias: '!true'} | filter:filter_feature[feature.name.es]">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="{{feature.id}}" type="checkbox" class="dislike ace ace-checkbox-2" ng-click="feature.active = !feature.active; onChecked(feature, 'dislikesAlias')" ng-checked="feature.active" />
+                                            <span class="lbl"> {{feature.name.es}}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </tab>
+                        </tabset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

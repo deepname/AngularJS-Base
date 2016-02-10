@@ -1,0 +1,163 @@
+
+#user-edit-view{
+  /*
+  .form-group:not(.input-group-addon) {
+    input {
+      margin-bottom: 10px;
+    }
+  }
+  */
+  .tab-content {
+    .checkbox {
+      display: inline-block !important;
+      margin: 0 5px;
+      label {
+        display: inline-block;
+      }
+    }
+  }
+  .map-wrap {
+    position: relative;
+    .map-loader {
+      @include transition(all .3s);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, .3);
+      pointer-events: none;
+      p {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        margin-top: -10px;
+      }
+    }
+  }
+  .pac-container {
+    z-idnex: 2000;
+  }
+  .img-wrap {
+    position: relative;
+    .delete {
+      @include transition(all .3s ease);
+      position: absolute;
+      left: 5px;
+      height: 30px;
+      background-color: rgba(0, 0, 0, 0.5);
+      right: 5px;
+      bottom: 4px;
+      text-align: center;
+      cursor: pointer;
+      &:hover,
+      &:active {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+      i {
+        margin: 0 auto;
+        margin-top: 6px;
+        font-size: 20px;
+      }
+    }
+  }
+  .images-to-delete {
+    li {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 5px 10px;
+      background-color: #eee;
+      i.fa-times {
+        @include transition(all .1s);
+        color: grey;
+        display: inline-block;
+        margin-left: 5px;
+        cursor: pointer;
+        &:hover,
+        &:active {
+          color: #dd5a43;
+        }
+      }
+    }
+  }
+  #type-of-content {
+    display: block;
+    padding-bottom: 70px;
+    .route-box {
+      padding: 10px 0 30px 0;
+      h4 {
+        margin-top: 0;
+      }
+      .route-list-wrap {
+        ul {
+          li {
+            margin-bottom: 10px;
+            .card {
+              @include boxshadow(0px 1px 2px 0px rgba(0, 0, 0, .2));
+              @include round(2px);
+              position: relative;
+              background-color: #f8f8f8;
+              .img,
+              .text {
+                @include boxsizing();
+                display: inline-block;
+                vertical-align: top;
+              }
+              .img {
+                width: 80px;
+                height: 80px;
+                > div {
+                  width: 100%;
+                  height: 100%;
+                  background-position: center;
+                  background-size: cover;
+                  background-repeat: no-repeat;
+                }
+              }
+              .text {
+                width: calc(100% - 80px);
+                padding: 14px 35px 14px 15px;
+                height: 80px;
+                h4 {
+                  margin-bottom: 5px;
+                  margin-top: 5px;
+                  font-size: 16px;
+                  @extend .ellipsis;
+                }
+                p {
+                  color: grey;
+                  height: 20px;
+                  @extend .ellipsis;
+                }
+                .fa-close {
+                  @include transition(all .3s);
+                  cursor: pointer;
+                  position: absolute;
+                  right: 14px;
+                  top: 12px;
+                  font-size: 14px;
+                  margin: -5px;
+                  padding: 5px;
+                  color: grey;
+                  &:hover {
+                    color: $discardColor;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .textareaDisabled {
+    color: #848484 !important;
+    background-color: #eee !important;
+    padding: 10px !important;
+    font-size: 14px !important;
+  }
+}

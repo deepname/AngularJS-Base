@@ -1,0 +1,21 @@
+<div class="row" id="rating">
+    <div class="col-md-12">
+        <h3>Profile</h3>
+        <div class="profiles-wrap">
+            <div class="profile row" ng-repeat="profile in allProfiles">
+                <div class="col-xs-2">
+                    <div class="img" style="background-image: url('/app/resources/img/user_avatar.png')"></div>
+                    <p class="name">{{profile.name}}</p>
+                </div>
+                <div class="col-xs-1">
+                    <b>{{profileSliders[$index].min}}</b>
+                </div>
+                <div range-slider class="col-xs-8" min="sliderOpts.min" max="sliderOpts.max" model-min="profileSliders[$index].min" model-max="profileSliders[$index].max" pin-handle="min" disabled="true">
+                </div>
+                <div class="col-xs-1">
+                    <b>{{profileSliders[$index].max}}</b>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

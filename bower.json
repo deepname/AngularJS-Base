@@ -1,0 +1,33 @@
+{
+    "name": "Base AngularJs",
+    "version": "0.0.1",
+    "authors": [
+        "Ivan Gómez"
+    ],
+    "description": "Base of future projects with required",
+    "keywords": [
+        "base",
+        "AngularJS"
+    ],
+    "dependencies": {
+        "angular": "latest",
+        "angular-bootstrap": "0.11.2",
+        "angular-route": "1.2.26",
+        "angular-animate": "latest",
+        "bootstrap": "~3.3.4",
+        "requirejs": "~2.1.18",
+        "requirejs-text": "~2.0.14",
+        "angular-resource": "1.3.1",
+        "angular-webstorage": "~0.11.0",
+        "jquery": "~2.1.4",
+        "jqueryui": "latest"
+    },
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
+}

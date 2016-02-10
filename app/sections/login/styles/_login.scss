@@ -1,0 +1,14 @@
+#login-view{
+
+  h1{
+    margin-bottom: 40px;
+  }
+
+  .container{
+    @include transform(translateY(-100%));
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+  }
+}

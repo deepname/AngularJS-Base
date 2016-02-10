@@ -1,0 +1,39 @@
+<div id="content-search-modal">
+    <i class="fa fa-close close-modal" ng-click="$root.showModalContent = false;"></i>
+    <h3>Search contents</h3>
+
+    <!-- search filters -->
+    <div class="content-filters">
+        <filter-list template="filterListViewModal" action="link_action" method="post" imodel='[
+             {"name":"name","label":"Name to search","placeholder":"write some words...","element":"input","type":"text"},
+             {"name":"status","label":"Status","element":"select","options":[{"title":"Draft","value":"DRAFT"},{"title":"Active Pending","value":"ACTIVE_PENDING"},{"title":"Translation","value":"TRANSLATION_PENDING"},{"title":"Reviewing...","value":"REVIEW"},{"title":"Tag Validation","value":"TAGS_VALIDATION"},{"title":"Active","value":"ACTIVE"},{"title":"Discarded","value":"DISCARDED"},{"title":"Deleted","value":"DELETED"}]},
+             {"name":"category","label":"Category","element":"select","url":"/categories/list", "valueField":"alias","titleField":"name", "i18n": "es"},
+             {"name":"influencer","label":"Influencer","element":"select","url":"/influencers/all", "valueField":"id","titleField":"name"},
+             {"name":"franchise","label":"Franchise","element":"select","url":"/trademarks/search/all", "valueField":"id","titleField":"name"}
+             ]'>
+        </filter-list>
+    </div>
+    <!-- results list -->
+    <ul ng-show="contentSearchResults.length && showResultsList" class="animated fadeIn short assoc-list">
+        <li ng-repeat="result in contentSearchResults" ng-click="existingContentHandler(result, $event)">
+            <div class="img" ng-if="result.content.imagesURLs.length" style="background-image: url({{urlStaticImage}}{{result.content.imagesURLs[0]}})"></div>
+            <div class="img" ng-if="!result.content.imagesURLs.length" style="background-image: url(app/resources/img/empty-img.jpg)"></div>
+            <div class="text">
+                <h4><span class="stat {{result.contentStatus}}"></span> {{result.name}}</h4>
+                <p ng-if="result.content.i18n.es.shortDescription" ng-bind-html="result.content.i18n.es.shortDescription"></p>
+                <p ng-if="!result.content.i18n.es.shortDescription && result.content.i18n.es.description" ng-bind-html="result.content.i18n.es.description"></p>
+                <div class="add fa" ng-class="{true:'fa-check', false:'fa-plus'}[isRouteContent(result._id)]"></div>
+            </div>
+        </li>
+    </ul>
+    <!-- no results -->
+    <ul ng-show="contentSearchResults.length <= 0 && showResultsList" class="empty-list">
+        <li class="nobg">No se han encontrado resultados.</li>
+    </ul>
+    <div class="modal-bottom">
+        <!-- pagination -->
+        <pagination-our></pagination-our>
+        <!-- confirm route contents -->
+        <button class="btn btn-info confirm" ng-click="confirmRouteContents()" ng-show="contentSearchResults.length">Terminar</button>
+    </div>
+</div>

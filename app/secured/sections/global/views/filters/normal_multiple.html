@@ -1,0 +1,6 @@
+<select multiple ng-model="param.value" class="col-md-12" name="{{param.name}}">
+    <option value="">All</option>
+    <option ng-repeat="option in param.options | orderBy:'title' " value="{{option.value}}">
+        {{option.title}}
+    </option>
+</select>

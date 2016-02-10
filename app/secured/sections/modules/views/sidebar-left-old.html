@@ -1,0 +1,453 @@
+<!-- <script type="text/javascript">
+try {
+    ace.settings.check('sidebar', 'fixed');
+} catch (e) {}
+</script>
+ -->
+<ul class="nav nav-list">
+    <li ng-class="{ active: isActive('/about')}">
+        <a href="#/about">
+            <i class="menu-icon fa fa-tachometer"></i>
+            <span class="menu-text"> Dashboard</span>
+        </a>
+        <b class="arrow"></b>
+    </li>
+    <!-- SALES -->
+    <li ng-class="{ active: isActive('/sales')}">
+        <a href="javascript:" class="dropdown-toggle">
+            <i class="menu-icon fa fa-shopping-cart"></i>
+            <span class="menu-text"> Sales  </span>
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+        <b class="arrow"></b>
+        <ul class="submenu">
+            <!-- business deals -->
+            <li ng-class="{ active: isActive('/sales/business_deals/list')}">
+                <a href="#/sales/business_deals/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Business deals
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <!-- comercial areas -->
+            <li ng-class="{ active: isActive('/sales/comercial_areas/edit')}">
+                <a href="#/sales/comercial_areas/edit">
+                    <i class="menu-icon fa fa-caret-right"></i> Comercial areas
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <!-- companies (web pro) -->
+            <li ng-class="{ active: isActive('/sales/companies_pro/list')}" ng-if="$root.checkHasRole(['ROLE_ADMIN'], false)">
+                <a href="#/sales/companies_pro/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Companies (pro)
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/trademarks/list')}">
+                <a href="#/trademarks/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Trademarks
+                </a>
+                <b class="arrow"></b>
+            </li>
+        </ul>
+    </li>
+    <!-- CONTENT -->
+    <li ng-class="{ active: isActive('/content/')}">
+        <a href="javascript:" class="dropdown-toggle">
+            <i class="menu-icon fa fa-pencil-square-o"></i>
+            <span class="menu-text"> Content  </span>
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+        <b class="arrow"></b>
+        <ul class="submenu">
+            <li ng-class="{ active: isActive('/content/list')}">
+                <a href="#/content/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Contents
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/category/list')}" ng-if="!$root.checkHasRole(['ROLE_CONTENT_TRANSLATOR'], false)">
+                <a href="#/category/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Categories
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li class="hsub" ng-if="!$root.checkHasRole(['ROLE_CONTENT_TRANSLATOR'], false)">
+                <a href="javascript:" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i> Features
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu nav-hide">
+                    <li ng-class="{ active: isActive('/features/feature/list')}">
+                        <a href="#/features/feature/list">
+                            Feature
+                            <b class="arrow"></b>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li ng-class="{ active: isActive('/features/profile/order')}">
+                        <a href="#/features/profile/order">
+                            Ordenación profile
+                            <b class="arrow"></b>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li ng-class="{ active: isActive('/features/group/list')}">
+                        <a href="#/features/group/list">
+                            Group
+                            <b class="arrow"></b>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li ng-class="{ active: isActive('/features/profile/list')}">
+                        <a href="#/features/profile/list">
+                            Profile
+                            <b class="arrow"></b>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <li ng-class="{ active: isActive('/synopsis/list')}" ng-if="!$root.checkHasRole(['ROLE_CONTENT_TRANSLATOR'], false)">
+                <a href="#/synopsis/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Synopsis
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/influencer/list')}" ng-if="!$root.checkHasRole(['ROLE_CONTENT_TRANSLATOR'], false)">
+                <a href="#/influencer/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Influencers
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <!--plan-->
+            <li class="hsub" ng-if="!$root.checkHasRole(['ROLE_CONTENT_TRANSLATOR'], false)">
+                <a href="javascript:" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i> Plan
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu nav-hide">
+                    <li ng-class="{ active: isActive('/plan/predefined_plan/list')}" ng-if="!$root.checkHasRole(['ROLE_CONTENT_TRANSLATOR'], false)">
+                        <a href="#/plan/predefined_plan/list">
+                            Predefined plans
+                        <b class="arrow"></b>
+                        </a>
+                    </li>
+                    <li ng-class="{ active: isActive('/plan/plan_templates/list')}">
+                        <a href="#/plan/plan_templates/list">
+                            Plan templates
+                            <b class="arrow"></b>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li ng-class="{ active: isActive('/plan/plan_template_types/list')}">
+                        <a href="#/plan/plan_template_types/list">
+                            Plan templates types
+                            <b class="arrow"></b>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li ng-class="{active: isActive('/plan/plan_names/')}">
+                        <a href="#/plan/plan_names/list">
+                            Plan names
+                            <b class="arrow"></b>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <!-- SIMULATORS -->
+    <li ng-class="{ active: isActive('/simulators')}">
+        <a href="javascript:" class="dropdown-toggle">
+            <i class="menu-icon fa fa-empire"></i>
+            <span class="menu-text"> Simulators </span>
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+        <b class="arrow"></b>
+        <ul class="submenu nav-hide">
+            <li ng-class="{ active: isActive('/simulators/plan_matrix')}">
+                <a href="#/simulators/plan_matrix">
+                    <i class="menu-icon fa fa-caret-right"></i> Plan matrix
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <!--li ng-class="{ active: isActive('/simulators/twister-plan')}">
+                <a href="#/simulators/twister-plan">
+                    <i class="menu-icon fa fa-caret-right"></i> Twister Plan
+                </a>
+                <b class="arrow"></b>
+            </li-->
+            <li ng-class="{ active: isActive('/simulators/shake_plan')}">
+                <a href="#/simulators/shake_plan">
+                    <i class="menu-icon fa fa-caret-right"></i> Shake Plan
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/simulators/bcn_search')}">
+                <a href="#/simulators/bcn_search">
+                    <i class="menu-icon fa fa-caret-right"></i> BCN search
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/simulators/social_login')}">
+                <a href="#/simulators/social_login">
+                    <i class="menu-icon fa fa-caret-right"></i> Social login
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <!--
+            <li ng-class="{ active: isActive('/simulators/shake')}">
+                <a href="#/simulators/shake">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Plan shake
+                </a>
+                <b class="arrow"></b>
+            </li>
+            -->
+        </ul>
+    </li>
+    <!-- USER -->
+    <li ng-class="{ active: isActive('/plan')}" ng-if="!$root.checkHasRole(['ROLE_CONTENT_TRANSLATOR'], false)">
+        <a href="javascript:" class="dropdown-toggle">
+            <i class="menu-icon fa fa-user"></i>
+            <span class="menu-text"> User </span>
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+        <b class="arrow"></b>
+        <ul class="submenu nav-hide">
+            <li ng-class="{ active: isActive('/userBack/list')}">
+                <a href="#/userBack/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Users backoffice
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/userApp/list')}">
+                <a href="#/userApp/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Users app
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/userPro/list')}">
+                <a href="#/userPro/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Users professional
+                </a>
+                <b class="arrow"></b>
+            </li>
+        </ul>
+    </li>
+    <!-- STATISTICS -->
+    <li ng-class="{ active: isActive('/statistics/')}">
+        <a href="javascript:" class="dropdown-toggle">
+            <i class="menu-icon fa fa-bar-chart"></i>
+            <span class="menu-text"> Reports </span>
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+        <b class="arrow"></b>
+        <ul class="submenu">
+            <li class="hsub">
+                <a href="javascript:" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i> Contenidos
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu nav-hide">
+                    <li ng-class="{ active: isActive('/statistics/content_category')}">
+                        <a href="#/statistics/content_category">
+                            Content by category
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li ng-class="{ active: isActive('/statistics/content_features')}">
+                        <a href="#/statistics/content_features">
+                            Content by features
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li ng-class="{ active: isActive('/statistics/content_profile')}">
+                        <a href="#/statistics/content_profile">
+                            Content by profile
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li ng-class="{ active: isActive('/statistics/content_week_days')}">
+                        <a href="#/statistics/content_week_days">
+                            Content by week days
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li ng-class="{ active: isActive('/statistics/active_content')}">
+                        <a href="#/statistics/active_content">
+                            Active content
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <!--li class="hsub">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i> Profile
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu nav-hide">
+                    <li ng-class="{ active: isActive('/statistics/profile/content')}">
+                        <a href="#/statistics/profile/content">
+                            x content
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li ng-class="{ active: isActive('/statistics/profile/features')}">
+                        <a href="#/statistics/profile/features">
+                            x feature
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li-->
+            <li class="hsub">
+                <a href="javascript:" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i> Comercial
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu nav-hide">
+                    <li ng-class="{ active: isActive('/generic_list/list/comercial_list')}">
+                        <a href="#/generic_list/list/comercial_list?view=Content">
+                            Comercial list
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <li class="hsub">
+                <a href="javascript:" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i> Marketing
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu nav-hide">
+                    <li ng-class="{ active: isActive('/generic_list/list/newsletter_list')}">
+                        <a href="#/generic_list/list/newsletter_list?view=Newsletter">
+                            Newsletter list
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <!-- MAPPING -->
+    <li ng-if="!$root.checkHasRole(['ROLE_CONTENT_TRANSLATOR'], false)">
+        <a href="javascript:" class="dropdown-toggle">
+            <i class="menu-icon fa fa-sitemap"></i>
+            <span class="menu-text"> Mapeado </span>
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+        <b class="arrow"></b>
+        <ul class="submenu">
+            <li ng-class="{ active: isActive('/mapping/feature')}">
+                <a href="#/mapping/feature">
+                    <i class="menu-icon fa fa-caret-right"></i> Features
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/mapping/category')}">
+                <a href="#/mapping/category">
+                    <i class="menu-icon fa fa-caret-right"></i> Categorías
+                </a>
+                <b class="arrow"></b>
+            </li>
+        </ul>
+    </li>
+    <!-- CONFIGURATION -->
+    <li ng-class="{ active: isActive('/config/')}" ng-if="!$root.checkHasRole(['ROLE_CONTENT_TRANSLATOR'], false)">
+        <a href="javascript:" class="dropdown-toggle">
+            <i class="menu-icon fa fa-wrench"></i>
+            <span class="menu-text"> Configuration  </span>
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+        <b class="arrow"></b>
+        <ul class="submenu">
+            <li ng-class="{ active: isActive('/email_template/list')}">
+                <a href="#/email_template/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Templates mails
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/configuration_services/list')}">
+                <a href="#/configuration_services/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Configuration services
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/generic_list/config')}">
+                <a href="#/generic_list/config">
+                    <i class="menu-icon fa fa-caret-right"></i> Generic list
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/landmark_map')}">
+                <a href="#/landmark_map">
+                    <i class="menu-icon fa fa-caret-right"></i> Landmark map
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/task_manager')}">
+                <a href="#/task_manager">
+                    <i class="menu-icon fa fa-caret-right"></i> Task manager
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/travel_tips/list')}">
+                <a href="#/travel_tips/list">
+                    <i class="menu-icon fa fa-caret-right"></i> Travel tips
+                </a>
+                <b class="arrow"></b>
+            </li>
+        </ul>
+    </li>
+    <!-- NLP -->
+    <!--li ng-class="{ active: isActive('/NLP/')}" ng-if="!$root.checkHasRole(['ROLE_CONTENT_TRANSLATOR'], false)">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-code"></i>
+            <span class="menu-text"> NLP  </span>
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+        <b class="arrow"></b>
+        <ul class="submenu">
+            <li ng-class="{ active: isActive('/NLP/dialog')}">
+                <a href="#/NLP/dialog">
+                    <i class="menu-icon fa fa-caret-right"></i> Dialog
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/NLP/triggerWords')}">
+                <a href="#/NLP/triggerWords">
+                    <i class="menu-icon fa fa-caret-right"></i> Trigger words
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-class="{ active: isActive('/NLP/answers')}">
+                <a href="#/NLP/answers">
+                    <i class="menu-icon fa fa-caret-right"></i> Answers words
+                </a>
+                <b class="arrow"></b>
+            </li>
+        </ul>
+    </li-->
+</ul>
+<!-- /.nav-list -->
+<!-- #section:basics/sidebar.layout.minimize -->
+<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse" ng-click="$root.sideBarBig = !$root.sideBarBig">
+    <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right">
+    </i>
+</div>
+<!-- /section:basics/sidebar.layout.minimize -->
+<!-- <script type="text/javascript">
+try {
+    ace.settings.check('sidebar', 'collapsed');
+} catch (e) {}
+</script>
+ -->

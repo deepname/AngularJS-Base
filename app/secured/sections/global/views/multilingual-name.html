@@ -1,0 +1,10 @@
+<!-- We add ng-form to the tag ng-repeat is on, to create a nested form context. -->
+<div>
+    <div style="padding:15px">
+        <!-- name -->
+        <div class="form-group" ng-class="{'has-error': subForm.name.$dirty && subForm.name.$invalid}">
+            <label class=" control-label no-padding-right" for="form-field-1-1"> Name: </label>
+            <input id="form-field-1-1" ng-model="content" class="form-control" name="name"/>
+        </div>
+    </div>
+</div>

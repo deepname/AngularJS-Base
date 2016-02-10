@@ -1,0 +1,43 @@
+<ul class="sidebar-menu">
+    <!-- root level -->
+    <accordion close-others="oneAtATime" id="sidebar-accordion">
+        <accordion-group ng-repeat="section in appSections" ng-init="section.opened = false;" is-open="section.opened" is-disabled="!section.children || !section.children.length || sidebarCollapsed">
+            <accordion-heading>
+                <div class="item-wrap" ng-click="goToSection(section.path)" ng-class="{true: 'opened', false: ''}[section.opened]" tooltip-placement="right" tooltip="{{section.name}}" tooltip-trigger
+                     tooltip-enable="$root.sidebarCollapsed">
+                    <i class="fa {{section.icon}}"></i>
+                    <span class="section-name">{{section.name}}</span>
+                    <i class="fa fa-angle-down" ng-if="section.children && section.children.length && !section.opened"></i>
+                    <i class="fa fa-angle-right" ng-if="section.children && section.children.length && section.opened"></i>
+                </div>
+            </accordion-heading>
+            <!-- sublevel 1 -->
+            <accordion close-others="oneAtATime">
+                <accordion-group ng-repeat="subSection in section.children" ng-init="subSection.opened = false" is-open="subSection.opened" is-disabled="!subSection.children || !subSection.children.length || sidebarCollapsed">
+                    <accordion-heading>
+                        <div class="item-wrap sub" ng-click="goToSection(subSection.path)" ng-class="{true: 'opened', false: ''}[subSection.opened]">
+                            <i class="fa {{subSection.icon}}"></i>
+                            <span class="section-name">{{subSection.name}}</span>
+                            <i class="fa fa-angle-down" ng-if="subSection.children && subSection.children.length"></i>
+                        </div>
+                    </accordion-heading>
+                    <!-- sublevel 2 -->
+                    <accordion close-others="oneAtATime">
+                        <accordion-group ng-repeat="subSubSection in subSection.children" ng-init="subSubSection.opened = false" is-disabled="!subSubSection.children || !subSubSection.children.length || sidebarCollapsed">
+                            <accordion-heading>
+                                <div class="item-wrap subSub" ng-click="goToSection(subSubSection.path)">
+                                    <i class="fa {{subSubSection.icon}}"></i>
+                                    <span class="section-name">{{subSubSection.name}}</span>
+                                    <i class="fa fa-angle-down" ng-if="subSubSection.children && subSubSection.children.length"></i>
+                                </div>
+                            </accordion-heading>
+                        </accordion-group>
+                    </accordion>
+                </accordion-group>
+            </accordion>
+        </accordion-group>
+    </accordion>
+    <i class="fa fa-angle-double-left text-center" ng-click="$root.sidebarCollapsed = true;" ng-if="!sidebarCollapsed"></i>
+    <!-- <i class="fa fa-angle-double-left text-center" ng-click="$root.sidebarCollapsed = true; section.opened = !section.opened; subSection.opened = !subSection.opened" ng-if="!sidebarCollapsed"></i> -->
+    <i class="fa fa-angle-double-right text-center" ng-click="$root.sidebarCollapsed = false;" ng-if="sidebarCollapsed"></i>
+</ul>

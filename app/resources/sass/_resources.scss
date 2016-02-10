@@ -1,0 +1,173 @@
+//COLORS
+//text greys
+$white: #FFF;
+$greyTextSuperLight: #DDD;
+$greyTextLight: #B6B6B6;
+$greyTextMid: #767676;
+$greyTextDark: #444;
+$greyTextSuperDark: #212121;
+$black: #000;
+//background greys
+$greyBg: #EEE;
+//colors
+$blue: #2B9AF7;
+$green: #4CAF50;
+$red: #F44336;
+$orange: #ee7f00;
+//status colors
+$primaryColor: #438EB9;
+$activeColor: #63B656;
+$draftColor: orange;
+$reviewColor: #6fb3e0;
+$discardColor: #212121;
+$expiredColor: #959B9E;
+$activePendingColor: #ff7f91;
+$translationPendingColor: #795750;
+$tagsValidationColor: #F44336;
+//FONTS
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,400italic,500italic,300italic,700);
+$mainfont: 'Roboto',
+Sans serif;
+//MIXINS
+@mixin opacity($opacity) {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity})";
+    filter: alpha(opacity=$opacity);
+    -moz-opacity: $opacity;
+    -khtml-opacity: $opacity;
+    opacity: $opacity;
+}
+
+@mixin round($round) {
+    border-radius: $round;
+    -webkit-border-radius: $round;
+    -moz-border-radius: $round;
+}
+
+@mixin boxshadow($shadow) {
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin boxsizing() {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin transform($transform) {
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -ms-transform: $transform;
+    -o-transform: $transform;
+    transform: $transform;
+}
+
+@mixin twoshadows($shadow1, $shadow2) {
+    -webkit-box-shadow: $shadow1, $shadow2;
+    -moz-box-shadow: $shadow1, $shadow2;
+    box-shadow: $shadow1, $shadow2;
+}
+
+@mixin roundbottom($round) {
+    -webkit-border-bottom-left-radius: $round;
+    -moz-border-bottom-left-radius: $round;
+    -ms-border-bottom-left-radius: $round;
+    -o-border-bottom-left-radius: $round;
+    border-bottom-left-radius: $round;
+    -webkit-border-bottom-right-radius: $round;
+    -moz-border-bottom-right-radius: $round;
+    -ms-border-bottom-right-radius: $round;
+    -o-border-bottom-right-radius: $round;
+    border-bottom-right-radius: $round;
+}
+
+@mixin opacity($opacity) {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" $opacity ")";
+    filter: alpha(opacity=$opacity);
+    -moz-opacity: $opacity;
+    -khtml-opacity: $opacity;
+    opacity: $opacity;
+}
+
+@mixin calc($property, $expression) {
+    #{$property}: -moz-calc(#{$expression});
+    #{$property}: -webkit-calc(#{$expression});
+    #{$property}: calc(#{$expression});
+}
+
+@mixin border-top-radius($radius) {
+    border-top-left-radius: $radius;
+    -webkit-border-top-left-radius: $radius;
+    -moz-border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-top-right-radius: $radius;
+}
+
+@mixin border-bottom-radius($radius) {
+    border-bottom-left-radius: $radius;
+    -webkit-border-bottom-left-radius: $radius;
+    -moz-border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+    -webkit-border-bottom-right-radius: $radius;
+    -moz-border-bottom-right-radius: $radius;
+}
+
+
+
+//HELPER CLASSES
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+
+//FUNCTIONS
+
+$break-mobile: 768;
+$break-tablet: 1024;
+$break-desktop: 992;
+$break-wide: 1200;
+@mixin device($device) {
+    @if ($device=='mobile') {
+        @media screen and (max-width: $break-mobile+'px') {
+            @content
+        }
+    }
+    @else if ($device=='tablet') {
+        @media screen and (min-width: $break-mobile+1+'px') and (max-width: $break-tablet) {
+            @content
+        }
+    }
+    @else if ($device=='desktop') {
+        @media screen and (min-width: $break-tablet+1+'px') and (max-width: $break-desktop) {
+            @content
+        }
+    }
+    @else if ($device=='wide') {
+        @media screen and (min-width: $break-desktop) {
+            @content
+        }
+    }
+}

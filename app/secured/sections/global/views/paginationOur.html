@@ -1,0 +1,46 @@
+<div class="row">
+	<div class="col-xs-5">
+		<div class="dataTables_info text-left" id="contact-list_info">
+			Showing {{currentPage * itemsPerPage}} to
+			<!--select ng-model="itemsPerPage" ng-change="list(currentPage)">
+				<option>10</option>
+				<option>20</option>
+				<option>30</option>
+				<option>40</option>
+				<option>50</option>
+				<option>100</option>
+			</select-->
+			<select ng-model="itemsPerPage" ng-options="option.value as option.value for option in optionsItemsPerPage"
+					ng-change="list(currentPage, filters, itemsPerPage)">
+			</select>
+			 of {{page.totalSize}} entries 
+		</div>
+	</div>
+	<div class="col-xs-7">
+		<div class="dataTables_paginate paging_bootstrap">
+			
+			<ul class="pagination">
+				<li ng-class="prevPageDisabled()">
+					<a href ng-click="firstPage()"><i class="ace-icon fa fa-angle-double-left"></i></a>
+				</li>
+				<li ng-class="prevPageDisabled()">
+					<a href ng-click="prevPage()"><i class="ace-icon fa fa-angle-left"></i></a>
+				</li>
+				<li ng-repeat="n in range()" ng-class="{active: n == currentPage}">
+					<a href ng-click="setPage(n)">{{n}}</a>
+				</li>
+				<li ng-class="nextPageDisabled()">
+					<a href ng-click="nextPage()"><i class="ace-icon fa fa-angle-right"></i></a>
+				</li>
+				<li ng-class="nextPageDisabled()">
+					<a href ng-click="lastPage()"><i class="ace-icon fa fa-angle-double-right"></i></a>
+				</li>
+				<li>
+					<input class="findPage" type="text" min="0" max="Math.ceil({{page.totalSize / itemsPerPage}})"
+						integer size="2" maxlength="7" ng-model="currentPage" ng-disabled="page.totalSize <= itemsPerPage"/>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+</div>

@@ -1,0 +1,81 @@
+<div id="login-view">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0 col-xs-10 col-xs-offset-1">
+                <header>
+                    <h1 ng-show="!dontRemember">
+                        <span class="glyphicon glyphicon-lock"></span> Login
+                    </h1>
+
+                    <h1 ng-show="dontRemember">
+                        <span class="glyphicon glyphicon-question-sign"></span> Recordar contraseña
+                    </h1>
+                </header>
+                <p class="remember-message success" ng-show="successRemember && !dontRemember">{{rememberMsg}}</p>
+
+                <p class="remember-message error" ng-show="successRemember == false && dontRemember">{{rememberMsg}}</p>
+
+                <form name="loginForm" novalidate ng-submit="submitHandler(credentials)">
+                    <div class="login">
+                        <div class="row">
+                            <div class="col-md-2">
+                                Email:
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" name="username" class="form-control" ng-model="credentials.username"
+                                       required/>
+                                <span class="errorMessage" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+                                    Email is required
+                                </span>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row" ng-show="!dontRemember">
+                            <div class="col-md-2">
+                                Password:
+                            </div>
+                            <div class="col-md-10">
+                                <input type="password" name="password" class="form-control"
+                                       data-ng-model="credentials.password" data-ng-minlength="6" required/>
+                                <span class="errorMessage"
+                                      ng-show="loginForm.password.$dirty && loginForm.password.$invalid">
+                                    Password is required
+                                </span>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary"
+                                        ng-disabled="loginForm.$invalid || !loginForm.$dirty" ng-show="!dontRemember">
+                                    Login
+                                </button>
+                                <button type="submit" class="btn btn-primary" ng-show="dontRemember">Recordar</button>
+                            </div>
+                            <div class="col-md-10">
+                                <a href="javascript:void(0)" ng-click="dontRemember=!dontRemember"
+                                   ng-show="!dontRemember">¿No recuerdas tu contraseña?</a>
+                                <a href="javascript:void(0)" ng-click="dontRemember=!dontRemember"
+                                   ng-show="dontRemember">¡Ya la recuerdo!</a>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="statusRow">
+                            <br/>
+
+                            <div class="label label-important" ng-show="loginError">
+                                <span class="glyphicon glyphicon-thumbs-down icon-white"></span>&nbsp;&nbsp;Error: {{
+                                loginErrMsg }}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
